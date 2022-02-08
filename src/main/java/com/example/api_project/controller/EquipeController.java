@@ -34,8 +34,8 @@ public class EquipeController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @DeleteMapping("/deleteByPays/{pay}")
-    public ResponseEntity<List<Equipe>> deleteEquipeByPay(@PathVariable("pay") String name) {
-        List<Equipe> equipes = equipeService.deleteEquipebypays(name);
+    public ResponseEntity<List<Equipe>> findEquipeByPay(@PathVariable("pay") String name) {
+        List<Equipe> equipes = equipeService.findEquipebypays(name);
         return new ResponseEntity<>(equipes,HttpStatus.OK);
     }
     @GetMapping("/getJoueurParEquipe")

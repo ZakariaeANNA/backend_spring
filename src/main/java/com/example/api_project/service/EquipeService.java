@@ -31,7 +31,7 @@ public class EquipeService {
         equipeRepository.deleteById(id);
     }
 
-    public List<Equipe> deleteEquipebypays(String pays){
+    public List<Equipe> findEquipebypays(String pays){
         List<Equipe> equipes = equipeRepository.findAll();
         equipes.forEach((equipe -> {
             if(!(equipe.getPays().equals(pays)))
