@@ -32,12 +32,7 @@ public class EquipeService {
     }
 
     public List<Equipe> findEquipebypays(String pays){
-        List<Equipe> equipes = equipeRepository.findAll();
-        equipes.forEach((equipe -> {
-            if(!(equipe.getPays().equals(pays)))
-                System.out.println(equipe.getNomEquipe());
-        }));
-        return equipes;
+        return equipeRepository.findEquipesBypays(pays);
     }
     public Collection<Joueur> getJoueurParEquipe(String nomEquipe){
         return equipeRepository.getJoueursParEquipe(nomEquipe);
