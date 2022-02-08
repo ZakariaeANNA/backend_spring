@@ -32,8 +32,12 @@ public class MatcheController {
     }
 
     @PostMapping("/add")
+<<<<<<< HEAD
     public ResponseEntity<?> saveMatche(@RequestBody Matche matche)
     {
+=======
+    public void addMatche(@RequestBody Matche matche){
+>>>>>>> d4cfb93fcb8ba815df5e2cfdc7bf9ee69cafb025
         matchService.addMatche(matche);
         return new ResponseEntity<>(HttpStatus.OK);
     }

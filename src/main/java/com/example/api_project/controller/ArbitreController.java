@@ -17,22 +17,19 @@ public class ArbitreController {
     ArbitreService arbitreService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Arbitre>> getAllArbitres()
-    {
+    public ResponseEntity<List<Arbitre>> getAllArbitres() {
         List<Arbitre> arbitres = arbitreService.getArbitre();
         return new ResponseEntity<>(arbitres, HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addArbitre(@RequestBody Arbitre arbitre)
-    {
+    public ResponseEntity<?> addArbitre(@RequestBody Arbitre arbitre) {
         arbitreService.addAarbitre(arbitre);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteArbitre(@PathVariable Long id)
-    {
+    public ResponseEntity<?> deleteArbitre(@PathVariable Long id) {
         arbitreService.deleteArbitre(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

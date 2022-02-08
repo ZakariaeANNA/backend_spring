@@ -11,23 +11,24 @@ import java.util.Collection;
 import java.util.List;
 
 @RestController
+@RequestMapping("/joueurs")
 public class JoueurController {
     @Autowired
     JoueurService joueurService;
 
-    @GetMapping("/getJoueurs")
+    @GetMapping("/all")
     public ResponseEntity<List<Joueur>> getJoueurs()
     {
         List<Joueur> joueurs  = joueurService.getJoueurs();
         return new ResponseEntity<>(joueurs, HttpStatus.OK);
     }
-    @PostMapping("/addJoueur")
+    @PostMapping("/add")
     public ResponseEntity<?> addJoueur(@RequestBody Joueur joueur)
     {
         joueurService.addJoueur(joueur);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @DeleteMapping("/deleteJoueur/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteJoueur(@PathVariable("id") Long id)
     {
         joueurService.deleteJoueur(id);

@@ -1,3 +1,4 @@
+
 package com.example.api_project.controller;
 
 import com.example.api_project.entity.Stade;
@@ -10,27 +11,29 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/stades")
 public class StadeController {
 
     @Autowired
     StadeService stadeService;
 
-    @GetMapping("/getStades")
+    @GetMapping("/all")
     public ResponseEntity<List<Stade>> getStades()
     {
         List<Stade> stades = stadeService.getStades();
         return new ResponseEntity<>(stades, HttpStatus.OK);
     }
-    @PostMapping("/addStade")
+    @PostMapping("/add")
     public ResponseEntity<List<Stade>> addStade(@RequestBody Stade stade)
     {
         stadeService.addStade(stade);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @DeleteMapping("/deleteStade/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteStade(@PathVariable("id") Long id)
     {
         stadeService.deleteStade(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
+
