@@ -5,7 +5,9 @@ import com.example.api_project.entity.Joueur;
 import com.example.api_project.repositories.JoueurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -23,8 +25,13 @@ public class JoueurService {
     {
         joueurRepository.save(joueur);
     }
+
     public void deleteJoueur(Long id)
     {
         joueurRepository.deleteById(id);
+    }
+
+    public List<Joueur> JoueurParposteEquipe(String poste,String nomequipe){
+        return joueurRepository.findJoueurByPosteAndEquipe(poste,nomequipe);
     }
 }

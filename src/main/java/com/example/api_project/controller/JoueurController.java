@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -31,5 +32,10 @@ public class JoueurController {
     {
         joueurService.deleteJoueur(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @DeleteMapping("/JoueurParposteequipe/{poste}/{nomequipe}")
+    public ResponseEntity<List<Joueur>> JoueurParposteEquipe(@PathVariable("poste") String poste, @PathVariable("nomequipe") String nomequipe){
+        List<Joueur> joueurs = joueurService.JoueurParposteEquipe(poste,nomequipe);
+        return new ResponseEntity<>(joueurs,HttpStatus.OK);
     }
 }
