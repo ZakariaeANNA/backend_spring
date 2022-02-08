@@ -1,11 +1,13 @@
 package com.example.api_project.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -19,16 +21,31 @@ public class User {
     @Column(length = 100)
     String username;
 
+    @Column(length = 100)
     String password;
 
-    int active;
+    @Column(length = 100)
+    public String firstName;
+
+    @Column(length = 100)
+    public String lastName;
+
+    @Column(length = 100)
+    public String email;
+
+    private Boolean active;
+
+    @Column
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    Date birthDate;
 
     String roles = "";
 
     public List<String> roles(){
-        List<String> lib8iti = new ArrayList<String>();
-        lib8iti = Arrays.asList(this.roles.split(","));
-        return lib8iti;
+        List<String> roles = new ArrayList<String>();
+        roles = Arrays.asList(this.roles.split(","));
+        return roles;
     }
 
 }

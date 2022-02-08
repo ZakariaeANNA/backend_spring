@@ -42,6 +42,9 @@ public class MyUserPrincipal extends User implements UserDetails {
     }
 
     @Override
+    public String getEmail(){return user.getEmail(); }
+
+    @Override
     public boolean isAccountNonLocked() {
         return true;
     }
@@ -53,6 +56,6 @@ public class MyUserPrincipal extends User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return user.getActive() == 1;
+        return user.getActive();
     }
 }

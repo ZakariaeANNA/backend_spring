@@ -27,15 +27,13 @@ public class MyUserDetailsService implements UserDetailsService {
         return new MyUserPrincipal(user);
     }
 
-    public User registerNewUserAccount(User user) {
-        user.setRoles("ROLE_USERNAME");
-        user.setActive(1);
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        userRepository.save(user);
-        return user;
-    }
-    public boolean userExist(String username) {
-        return userRepository.findByUsername(username) != null;
+    public User registerNewUserAccount(User userRegistred) throws Exception {
+        User userfoundedbyusername = userRepository.findByUsername(userRegistred.getUsername());
+        if (userfoundedbyusername != null || userRepository.findByEmail(userRegistred.getEmail()).size() != 0) {
+            throw new Exception("User found for "+ userRegistred.getUsername() + ".");
+        }
+        userRepository.save(userRegistred);
+        return userRegistred;
     }
 
 }
