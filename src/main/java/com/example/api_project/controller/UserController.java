@@ -1,5 +1,6 @@
 package com.example.api_project.controller;
 
+<<<<<<< HEAD
 
 import com.example.api_project.entity.User;
 import com.example.api_project.repositories.UserRepository;
@@ -28,4 +29,7 @@ public class UserController {
     public String home(){
         return "Bonjour";
     }
+=======
+public class UserController {
+>>>>>>> 93efa19c77cf290f1d87cb164a1bb00fdaba77bc
 }

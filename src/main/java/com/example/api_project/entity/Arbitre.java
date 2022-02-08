@@ -1,4 +1,5 @@
 package com.example.api_project.entity;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
@@ -21,4 +22,5 @@ public class Arbitre {
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "arbitre")
     @JsonManagedReference("arbitre")
     Collection<Matche> Matches;
+
 }

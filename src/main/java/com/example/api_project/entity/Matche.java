@@ -1,4 +1,6 @@
 package com.example.api_project.entity;
+
+
 import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 
@@ -40,4 +42,5 @@ public class Matche {
             inverseJoinColumns = @JoinColumn(name = "idEquipe")
     )
     Collection<Equipe> equipes;
+
 }
