@@ -29,7 +29,7 @@ public class MatcheController {
     }
 
     @PostMapping("/add")
-    public void saveMatche(@RequestBody Matche matche){
+    public void addMatche(@RequestBody Matche matche){
         matchService.addMatche(matche);
     }
 

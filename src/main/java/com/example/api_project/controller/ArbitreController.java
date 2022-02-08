@@ -25,7 +25,7 @@ public class ArbitreController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteArbitre(@PathVariable Long id){
+    public void deleteArbitreById(@PathVariable Long id){
         arbitreService.deleteArbitre(id);
     }
 }
