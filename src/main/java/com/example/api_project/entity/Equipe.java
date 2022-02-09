@@ -30,7 +30,6 @@ public class Equipe {
     )
     List<Matche> matches;
 
-
     @OneToMany(fetch = FetchType.LAZY,mappedBy="equipe", cascade = CascadeType.ALL)
     @JsonManagedReference("equipe")
     Collection<Joueur> joueurs;
