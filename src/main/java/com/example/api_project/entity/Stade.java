@@ -1,25 +1,26 @@
 package com.example.api_project.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Data
 public class Stade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idJoueur;
+    Long idStade;
 
     @Column
-    String nomJoueur;
+    String nomStade;
 
     @Column
-    String poste;
+    String villeStade;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
-    @JoinColumn(name="id_Equipe")
-    @JsonBackReference("equipe")
-    Equipe equipe;
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "stade")
+    @JsonManagedReference("stade")
+    Collection<Matche> matches;
 }
