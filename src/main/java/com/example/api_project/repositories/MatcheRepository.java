@@ -15,6 +15,8 @@ import java.util.List;
 @Repository
 public interface MatcheRepository extends JpaRepository<Matche,Long> {
 
+    @Query("SELECT m.equipes , m1.equipes from Matche m , Matche m1 where m.dateMatch = m1.heureMatch and m.dateMatch = m1.dateMatch and m.stade.nomStade=?1")
+    List<Equipe> MatcheInStade(String nomStade);
 
     @Query("SELECT m from Matche m where m.dateMatch=?1")
     List<Matche> findMatchesBydate(Date datematche);

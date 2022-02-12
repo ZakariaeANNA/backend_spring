@@ -33,13 +33,13 @@ public class EquipeController {
         equipeService.deletequipe(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @DeleteMapping("/findByPays/{pay}")
+    @GetMapping("/findByPays/{pay}")
     public ResponseEntity<List<Equipe>> findEquipeByPay(@PathVariable("pay") String name) {
         List<Equipe> equipes = equipeService.findEquipebypays(name);
         return new ResponseEntity<>(equipes,HttpStatus.OK);
     }
     @GetMapping("/getJoueurParEquipe/{nomEquipe}")
-    public ResponseEntity<Collection<Joueur>> getJoueurParEquipe(@PathVariable String nomEquipe){
+    public ResponseEntity<Collection<Joueur>> getJoueurParEquipe(@PathVariable("nomEquipe") String nomEquipe){
        Collection<Joueur> joueurs =  equipeService.getJoueurParEquipe(nomEquipe);
        return new ResponseEntity<>(joueurs,HttpStatus.OK);
     }
