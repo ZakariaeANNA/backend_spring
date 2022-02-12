@@ -25,6 +25,7 @@ public class ArbitreController {
     @PostMapping("/add")
     public ResponseEntity<?> addArbitre(@RequestBody Arbitre arbitre) {
         arbitreService.addAarbitre(arbitre);
+        System.out.println(arbitre.toString()+"jjjjjj");
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
