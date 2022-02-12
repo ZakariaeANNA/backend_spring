@@ -33,7 +33,7 @@ public class EquipeController {
         equipeService.deletequipe(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @DeleteMapping("/deleteByPays/{pay}")
+    @DeleteMapping("/findByPays/{pay}")
     public ResponseEntity<List<Equipe>> findEquipeByPay(@PathVariable("pay") String name) {
         List<Equipe> equipes = equipeService.findEquipebypays(name);
         return new ResponseEntity<>(equipes,HttpStatus.OK);
