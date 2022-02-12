@@ -26,6 +26,7 @@ public class MyUserPrincipal extends User implements UserDetails {
         return authorities;
     }
 
+
     @Override
     public String getPassword() {
         return user.getPassword();

@@ -38,10 +38,11 @@ public class Securityconfig extends WebSecurityConfigurerAdapter {
     }
 
     protected void configure(HttpSecurity http) throws Exception {
+        http.cors();
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/user/save/").permitAll()
-                .antMatchers("/home").authenticated();
+                .antMatchers("/home").hasRole("ADMIN");
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilter(new CustomAuthentificationFilter(authenticationManagerBean()));
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
