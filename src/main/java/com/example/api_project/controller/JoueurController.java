@@ -34,7 +34,7 @@ public class JoueurController {
         joueurService.deleteJoueur(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @DeleteMapping("/JoueurParposteequipe/{poste}/{nomequipe}")
+    @GetMapping("/JoueurParposteequipe/{poste}/{nomequipe}")
     public ResponseEntity<List<Joueur>> JoueurParposteEquipe(@PathVariable("poste") String poste, @PathVariable("nomequipe") String nomequipe){
         List<Joueur> joueurs = joueurService.JoueurParposteEquipe(poste,nomequipe);
         return new ResponseEntity<>(joueurs,HttpStatus.OK);
