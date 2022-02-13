@@ -42,7 +42,7 @@ public class Securityconfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/user/save/").permitAll()
-                .antMatchers("/home").hasRole("ADMIN");
+                .antMatchers("/equipes/add").permitAll();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilter(new CustomAuthentificationFilter(authenticationManagerBean()));
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);

@@ -26,7 +26,7 @@ public class EquipeController {
     @PostMapping("/add")
     public ResponseEntity<?> addEquipe(@RequestBody Equipe equipe) {
         equipeService.addEquipe(equipe);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(equipe,HttpStatus.OK);
     }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteEquipr(@PathVariable("id") Long id) {
