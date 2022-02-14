@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StadeRepository extends JpaRepository<Stade,Long> {
 
+    Stade findStadeBynomStade(String nomstade);
 }

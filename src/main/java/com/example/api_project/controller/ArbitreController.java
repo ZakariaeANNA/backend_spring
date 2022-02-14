@@ -34,4 +34,13 @@ public class ArbitreController {
         arbitreService.deleteArbitre(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping("/arbitre/{nom}")
+    public ResponseEntity<Arbitre> getArbitreBynom(@PathVariable String nom){
+        Arbitre arbitre = arbitreService.getArbitreBynom(nom);
+        if(arbitre == null ){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(arbitre,HttpStatus.OK);
+    }
 }

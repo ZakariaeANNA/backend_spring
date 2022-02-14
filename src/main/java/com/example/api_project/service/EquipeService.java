@@ -37,4 +37,8 @@ public class EquipeService {
     public Collection<Joueur> getJoueurParEquipe(String nomEquipe){
         return equipeRepository.getJoueursParEquipe(nomEquipe);
     }
+
+    public Equipe getEquipeBynomEquipe(String nomequipe){
+        return equipeRepository.findEquipeBynomEquipe(nomequipe);
+    }
 }

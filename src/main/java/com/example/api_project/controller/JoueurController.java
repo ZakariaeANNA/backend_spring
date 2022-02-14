@@ -20,7 +20,9 @@ public class JoueurController {
     public ResponseEntity<List<Joueur>> getJoueurs()
     {
         List<Joueur> joueurs  = joueurService.getJoueurs();
+        System.out.println(""+joueurs.size());
         return new ResponseEntity<>(joueurs, HttpStatus.OK);
+
     }
     @PostMapping("/add")
     public ResponseEntity<?> addJoueur(@RequestBody Joueur joueur)

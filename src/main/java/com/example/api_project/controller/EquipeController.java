@@ -43,5 +43,14 @@ public class EquipeController {
        Collection<Joueur> joueurs =  equipeService.getJoueurParEquipe(nomEquipe);
        return new ResponseEntity<>(joueurs,HttpStatus.OK);
     }
+
+    @GetMapping("/equipe/{nomequipe}")
+    public ResponseEntity<Equipe> getEquipeBynomEquipe(@PathVariable String nomequipe){
+        Equipe equipe = equipeService.getEquipeBynomEquipe(nomequipe);
+        if(equipe == null){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(equipe,HttpStatus.OK);
+    }
 }
 

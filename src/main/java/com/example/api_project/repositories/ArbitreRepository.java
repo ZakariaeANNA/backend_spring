@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ArbitreRepository extends JpaRepository<Arbitre,Long> {
 
+    Arbitre findArbitreBynom(String nom);
 }

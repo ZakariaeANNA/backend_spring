@@ -24,4 +24,8 @@ public class ArbitreService {
     {
         arbitreRepository.deleteById(id);
     }
+
+    public Arbitre getArbitreBynom(String nom){
+        return arbitreRepository.findArbitreBynom(nom);
+    }
 }

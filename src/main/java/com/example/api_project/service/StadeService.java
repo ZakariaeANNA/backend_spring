@@ -25,4 +25,7 @@ public class StadeService {
     {
         stadeRepository.deleteById(id);
     }
+    public Stade getStadeBynomStade(String nomstade){
+        return stadeRepository.findStadeBynomStade(nomstade);
+    }
 }

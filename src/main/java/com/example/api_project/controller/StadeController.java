@@ -35,5 +35,14 @@ public class StadeController {
         stadeService.deleteStade(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping("/stade/{nomstade}")
+    public ResponseEntity<Stade> getStadeBynomStade(@PathVariable String nomstade){
+        Stade stade = stadeService.getStadeBynomStade(nomstade);
+        if(stade == null){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(stade,HttpStatus.OK);
+    }
 }
 

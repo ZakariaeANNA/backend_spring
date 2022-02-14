@@ -12,8 +12,10 @@ import java.util.Arrays;
 @SpringBootApplication
 public class ApiProjectApplication {
 
+
     public static void main(String[] args) {
         SpringApplication.run(ApiProjectApplication.class, args);
+
     }
     @Bean
     public CorsFilter corsFilter() {
@@ -30,5 +32,7 @@ public class ApiProjectApplication {
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(urlBasedCorsConfigurationSource);
     }
+
+
 
 }

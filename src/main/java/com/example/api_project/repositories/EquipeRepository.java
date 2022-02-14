@@ -17,4 +17,6 @@ public interface EquipeRepository extends JpaRepository<Equipe,Long> {
     @Query("SELECT e.joueurs from Equipe e where e.nomEquipe=?1")
     List<Joueur> getJoueursParEquipe(String nomequipe);
 
+    Equipe findEquipeBynomEquipe(String nomequipe);
+
 }
