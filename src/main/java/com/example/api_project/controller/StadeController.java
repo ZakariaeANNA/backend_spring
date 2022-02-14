@@ -1,6 +1,8 @@
 
 package com.example.api_project.controller;
 
+import com.example.api_project.entity.Equipe;
+import com.example.api_project.entity.Matche;
 import com.example.api_project.entity.Stade;
 import com.example.api_project.service.StadeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,13 +38,19 @@ public class StadeController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+
     @GetMapping("/stade/{nomstade}")
-    public ResponseEntity<Stade> getStadeBynomStade(@PathVariable String nomstade){
+    public ResponseEntity<Stade> getStadeBynomStade(@PathVariable String nomstade) {
         Stade stade = stadeService.getStadeBynomStade(nomstade);
-        if(stade == null){
+        if (stade == null) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(stade,HttpStatus.OK);
+        return new ResponseEntity<>(stade, HttpStatus.OK);
+    }
+    @GetMapping("/matcheinstade/{nomStade}")
+    public ResponseEntity<List<Equipe>> MatcheInStade(@PathVariable("nomStade") String nomStade){
+        List<Equipe> matches = stadeService.MatchInStade(nomStade);
+        return new ResponseEntity<>(matches,HttpStatus.OK);
     }
 }
 

@@ -26,20 +26,20 @@ public class EquipeController {
     @PostMapping("/add")
     public ResponseEntity<?> addEquipe(@RequestBody Equipe equipe) {
         equipeService.addEquipe(equipe);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(equipe,HttpStatus.OK);
     }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteEquipr(@PathVariable("id") Long id) {
         equipeService.deletequipe(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @DeleteMapping("/findByPays/{pay}")
+    @GetMapping("/findByPays/{pay}")
     public ResponseEntity<List<Equipe>> findEquipeByPay(@PathVariable("pay") String name) {
         List<Equipe> equipes = equipeService.findEquipebypays(name);
         return new ResponseEntity<>(equipes,HttpStatus.OK);
     }
     @GetMapping("/getJoueurParEquipe/{nomEquipe}")
-    public ResponseEntity<Collection<Joueur>> getJoueurParEquipe(@PathVariable String nomEquipe){
+    public ResponseEntity<Collection<Joueur>> getJoueurParEquipe(@PathVariable("nomEquipe") String nomEquipe){
        Collection<Joueur> joueurs =  equipeService.getJoueurParEquipe(nomEquipe);
        return new ResponseEntity<>(joueurs,HttpStatus.OK);
     }

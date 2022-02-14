@@ -6,7 +6,6 @@ import com.example.api_project.entity.Joueur;
 import com.example.api_project.repositories.EquipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Collection;
 import java.util.List;

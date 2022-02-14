@@ -1,7 +1,10 @@
 package com.example.api_project.service;
 
 
+import com.example.api_project.entity.Equipe;
+import com.example.api_project.entity.Matche;
 import com.example.api_project.entity.Stade;
+import com.example.api_project.repositories.MatcheRepository;
 import com.example.api_project.repositories.StadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,8 @@ import java.util.List;
 public class StadeService {
     @Autowired
     StadeRepository stadeRepository;
+    @Autowired
+    MatcheRepository matcheRepository;
 
     public List<Stade> getStades()
     {
@@ -25,7 +30,12 @@ public class StadeService {
     {
         stadeRepository.deleteById(id);
     }
+
     public Stade getStadeBynomStade(String nomstade){
         return stadeRepository.findStadeBynomStade(nomstade);
+    
+
+    public List<Equipe> MatchInStade(String nomStade){
+        return matcheRepository.MatcheInStade(nomStade);
     }
 }

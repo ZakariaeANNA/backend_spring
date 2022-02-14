@@ -23,11 +23,11 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if(request.getServletPath().equals("/login")){
+        if(request.getServletPath().equals("/login") ){
             filterChain.doFilter(request,response);
-        }else {
-            String authorizationHeader = request.getHeader("AUTHORIZATION");
-            System.out.println(authorizationHeader);
+        }else{
+            Map<String,String> requestMap = new ObjectMapper().readValue(request.getInputStream(), Map.class);
+            String authorizationHeader = requestMap.get("access_token");
             if(authorizationHeader != null && authorizationHeader.startsWith("Token ")){
                 try {
                     String token = authorizationHeader.substring("Token ".length());
@@ -36,9 +36,9 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                     DecodedJWT decodedJWT = verifier.verify(token);
                     String username = decodedJWT.getSubject();
                     String[] roles = decodedJWT.getClaim("roles").asArray(String.class);
-                    List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-                    Arrays.stream(roles).forEach(r -> {
-                        authorities.add(new SimpleGrantedAuthority(r));
+                    Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+                    Arrays.stream(roles).forEach(role -> {
+                        authorities.add(new SimpleGrantedAuthority(role));
                     });
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username,null,authorities);
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
