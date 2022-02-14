@@ -1,8 +1,6 @@
 package com.example.api_project.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -30,7 +28,8 @@ public class Equipe {
     )
     List<Matche> matches;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy="equipe", cascade = CascadeType.ALL)
+    @JsonBackReference
     @JsonManagedReference("equipe")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "equipe",cascade = CascadeType.ALL)
     Collection<Joueur> joueurs;
 }
