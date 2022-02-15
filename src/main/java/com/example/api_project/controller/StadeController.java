@@ -48,9 +48,10 @@ public class StadeController {
         return new ResponseEntity<>(stade, HttpStatus.OK);
     }
     @GetMapping("/matcheinstade/{nomStade}")
-    public ResponseEntity<List<Equipe>> MatcheInStade(@PathVariable("nomStade") String nomStade){
-        List<Equipe> matches = stadeService.MatchInStade(nomStade);
-        return new ResponseEntity<>(matches,HttpStatus.OK);
+    public ResponseEntity<List<Matche>> MatcheInStade(@PathVariable("nomStade") String nomStade){
+        List<Matche> equipes = stadeService.MatchInStade(nomStade);
+        System.out.println("Request Result :");
+        return new ResponseEntity<>(equipes,HttpStatus.OK);
     }
 }
 

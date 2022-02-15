@@ -26,20 +26,21 @@ public class Matche {
     @JsonFormat(pattern = "hh:mm")
     Date heureMatch;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE )
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE )
     @JoinColumn(name="idArbitre")
     @JsonBackReference("arbitre")
     Arbitre arbitre;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name="idStade")
     @JsonBackReference("stade")
     Stade stade;
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinTable(name = "matches_equipes",
-            joinColumns = @JoinColumn(name = "idMatch"),
-            inverseJoinColumns = @JoinColumn(name = "idEquipe")
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "matches_equipes",
+            joinColumns = @JoinColumn(name = "idMatch", referencedColumnName = "idMatch"),
+            inverseJoinColumns = @JoinColumn(name = "idEquipe" , referencedColumnName = "idEquipe")
     )
     Collection<Equipe> equipes;
 

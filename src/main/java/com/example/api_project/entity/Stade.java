@@ -1,6 +1,5 @@
 package com.example.api_project.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
@@ -10,6 +9,7 @@ import java.util.Collection;
 @Entity
 @Data
 public class Stade {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long idStade;
@@ -20,7 +20,7 @@ public class Stade {
     @Column
     String villeStade;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "stade")
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "stade")
     @JsonManagedReference("stade")
     Collection<Matche> matches;
 }
