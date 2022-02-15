@@ -28,16 +28,7 @@ public class Equipe  {
             inverseJoinColumns = @JoinColumn(name = "idMatch")
     )
     List<Matche> matches;
-<<<<<<< HEAD
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER,mappedBy="equipe", cascade = CascadeType.ALL)
-=======
 
-<<<<<<< HEAD
-=======
-    @JsonBackReference
->>>>>>> d2a82b147b1c6b43291831c421d3b5bbae46047a
->>>>>>> 7bc3de2c00b3ffc91cfcde9415cfd72c27412ef8
     @JsonManagedReference("equipe")
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "equipe",cascade = CascadeType.ALL)
     Collection<Joueur> joueurs;
