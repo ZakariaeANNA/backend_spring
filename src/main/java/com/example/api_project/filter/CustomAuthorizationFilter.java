@@ -22,9 +22,9 @@ import java.util.*;
 public class CustomAuthorizationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if(request.getServletPath().equals("/login")){
+        if(request.getServletPath().equals("/login") ){
             filterChain.doFilter(request,response);
-        }else {
+        }else{
             Map<String,String> requestMap = new ObjectMapper().readValue(request.getInputStream(), Map.class);
             String authorizationHeader = requestMap.get("access_token");
             if(authorizationHeader != null && authorizationHeader.startsWith("Token ")){

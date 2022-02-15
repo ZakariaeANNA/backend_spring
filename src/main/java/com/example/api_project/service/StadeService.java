@@ -31,7 +31,15 @@ public class StadeService {
         stadeRepository.deleteById(id);
     }
 
+<<<<<<< HEAD
     public List<Matche> MatchInStade(String nomStade){
+=======
+    public Stade getStadeBynomStade(String nomstade) {
+        return stadeRepository.findStadeBynomStade(nomstade);
+    }
+
+    public List<Equipe> MatchInStade(String nomStade){
+>>>>>>> d2a82b147b1c6b43291831c421d3b5bbae46047a
         return matcheRepository.MatcheInStade(nomStade);
     }
 }

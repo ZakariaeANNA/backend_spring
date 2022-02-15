@@ -11,4 +11,8 @@ import java.util.List;
 
 @Repository
 public interface StadeRepository extends JpaRepository<Stade,Long> {
+
+
+    Stade findStadeBynomStade(String nomstade);
+
 }

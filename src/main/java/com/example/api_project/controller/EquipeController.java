@@ -26,7 +26,7 @@ public class EquipeController {
     @PostMapping("/add")
     public ResponseEntity<?> addEquipe(@RequestBody Equipe equipe) {
         equipeService.addEquipe(equipe);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(equipe,HttpStatus.OK);
     }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteEquipr(@PathVariable("id") Long id) {
@@ -42,6 +42,15 @@ public class EquipeController {
     public ResponseEntity<Collection<Joueur>> getJoueurParEquipe(@PathVariable("nomEquipe") String nomEquipe){
        Collection<Joueur> joueurs =  equipeService.getJoueurParEquipe(nomEquipe);
        return new ResponseEntity<>(joueurs,HttpStatus.OK);
+    }
+
+    @GetMapping("/equipe/{nomequipe}")
+    public ResponseEntity<Equipe> getEquipeBynomEquipe(@PathVariable String nomequipe){
+        Equipe equipe = equipeService.getEquipeBynomEquipe(nomequipe);
+        if(equipe == null){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(equipe,HttpStatus.OK);
     }
 }
 
