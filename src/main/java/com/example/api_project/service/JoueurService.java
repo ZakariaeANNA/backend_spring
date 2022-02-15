@@ -1,6 +1,7 @@
 package com.example.api_project.service;
 
 
+import com.example.api_project.entity.Equipe;
 import com.example.api_project.entity.Joueur;
 import com.example.api_project.repositories.JoueurRepository;
 import org.springframework.beans.factory.annotation.Autowired;

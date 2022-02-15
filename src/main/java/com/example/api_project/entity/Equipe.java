@@ -11,7 +11,6 @@ import java.util.List;
 
 @Entity
 @Data
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "idEquipe")
 public class Equipe  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +29,6 @@ public class Equipe  {
     )
     List<Matche> matches;
 
-    @JsonBackReference
     @JsonManagedReference("equipe")
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "equipe",cascade = CascadeType.ALL)
     Collection<Joueur> joueurs;

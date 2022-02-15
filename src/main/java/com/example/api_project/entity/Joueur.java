@@ -25,10 +25,9 @@ public class Joueur{
     String poste;
 
 
-    @JsonManagedReference
+    @JsonBackReference("equipe")
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinColumn(name="idEquipe")
-    @JsonIgnoreProperties({"joueurs","matches"})
     Equipe equipe;
     
 }
