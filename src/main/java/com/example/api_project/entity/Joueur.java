@@ -1,14 +1,14 @@
 package com.example.api_project.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
-import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 
 @Entity
 @Data
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "idJoueur")
 public class Joueur{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +19,7 @@ public class Joueur{
 
     @Column
     String poste;
-
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinColumn(name="id_Equipe")
     @JsonBackReference("equipe")
     Equipe equipe;

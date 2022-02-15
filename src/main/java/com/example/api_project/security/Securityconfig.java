@@ -1,4 +1,6 @@
+
 package com.example.api_project.security;
+
 
 import com.example.api_project.filter.CustomAuthentificationFilter;
 import com.example.api_project.filter.CustomAuthorizationFilter;
@@ -41,11 +43,10 @@ public class Securityconfig extends WebSecurityConfigurerAdapter {
         http.cors();
         http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/user/save/").permitAll()
-                .antMatchers("/home").hasRole("ADMIN");
+                .anyRequest().permitAll();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilter(new CustomAuthentificationFilter(authenticationManagerBean()));
-        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+      //  http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
@@ -53,4 +54,5 @@ public class Securityconfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception{
         return super.authenticationManagerBean();
     }
+
 }

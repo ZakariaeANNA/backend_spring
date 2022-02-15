@@ -31,7 +31,7 @@ public class StadeService {
         stadeRepository.deleteById(id);
     }
 
-    public List<Equipe> MatchInStade(String nomStade){
+    public List<Matche> MatchInStade(String nomStade){
         return matcheRepository.MatcheInStade(nomStade);
     }
 }

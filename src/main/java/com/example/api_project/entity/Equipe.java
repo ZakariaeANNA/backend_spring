@@ -1,8 +1,6 @@
 package com.example.api_project.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,15 +20,15 @@ public class Equipe {
 
     @Column
     String pays;
-
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     @JoinTable(name = "matches_equipes",
             joinColumns = @JoinColumn(name = "idEquipe"),
             inverseJoinColumns = @JoinColumn(name = "idMatch")
     )
     List<Matche> matches;
-
-    @OneToMany(fetch = FetchType.LAZY,mappedBy="equipe", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER,mappedBy="equipe", cascade = CascadeType.ALL)
     @JsonManagedReference("equipe")
     Collection<Joueur> joueurs;
 }
