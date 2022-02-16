@@ -40,4 +40,8 @@ public class EquipeService {
     public Equipe getEquipeBynomEquipe(String nomequipe){
         return equipeRepository.findEquipeBynomEquipe(nomequipe);
     }
+
+    public Equipe getEquipeByidEquipe(Long id){
+        return equipeRepository.findEquipeByidEquipe(id);
+    }
 }
