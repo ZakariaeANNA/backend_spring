@@ -23,11 +23,6 @@ public class Joueur{
     @Column
     String poste;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
-    @JoinColumn(name="id_Equipe")
-    @JsonBackReference("equipe")
-
-
     @JsonBackReference("equipe")
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinColumn(name="idEquipe")

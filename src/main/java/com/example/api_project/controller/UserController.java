@@ -21,6 +21,10 @@ public class UserController {
     @PostMapping("/user/save")
     public User saveUser(@RequestBody User user) throws Exception {
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        if(user.getRoles().equals("")){
+            user.setRoles("ROLE_USER");
+        }
+        user.setActive(true);
         return myUserDetailsService.registerNewUserAccount(user);
     }
 
