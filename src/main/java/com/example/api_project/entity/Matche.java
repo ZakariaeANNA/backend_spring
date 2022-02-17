@@ -18,7 +18,7 @@ public class Matche {
 
     @Column
     @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern = "yyyy/MM/dd")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     Date dateMatch;
 
     @Column

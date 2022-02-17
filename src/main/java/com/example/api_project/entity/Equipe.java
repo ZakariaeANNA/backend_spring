@@ -16,11 +16,12 @@ public class Equipe  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long idEquipe;
 
-    @Column
+    @Column(updatable = false)
     String nomEquipe;
 
-    @Column
+    @Column(updatable = false)
     String pays;
+
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     @JoinTable(name = "matches_equipes",

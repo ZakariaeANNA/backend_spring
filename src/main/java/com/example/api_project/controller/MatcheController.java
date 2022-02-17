@@ -1,10 +1,15 @@
 package com.example.api_project.controller;
 
+import com.example.api_project.dto.Matchedto;
+import com.example.api_project.entity.Arbitre;
 import com.example.api_project.entity.Equipe;
 import com.example.api_project.entity.Matche;
 import com.example.api_project.entity.Stade;
 import com.example.api_project.repositories.MatcheRepository;
+import com.example.api_project.service.ArbitreService;
 import com.example.api_project.service.MatchService;
+import com.example.api_project.service.StadeService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +18,9 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/matches")
@@ -25,14 +32,31 @@ public class MatcheController {
     @Autowired
     MatcheRepository matcheRepository;
 
+    @Autowired
+    StadeService stadeService;
+
+    @Autowired
+    ArbitreService arbitreService;
+
+    @Autowired
+    ModelMapper modelMapper;
+
     @GetMapping("/all")
-    public ResponseEntity<List<Matche>> getAllMatches(){
-        List<Matche> matches = matchService.getMatches();
+    public ResponseEntity<List<Matchedto>> getAllMatches(){
+        List<Matchedto> matches = matchService.getMatches().stream().map(matche -> modelMapper.map(matche,Matchedto.class))
+                .collect(Collectors.toList());
         return new ResponseEntity<>(matches, HttpStatus.OK);
     }
 
     @PostMapping("/add")
     public ResponseEntity<?> saveMatche(@RequestBody Matche matche)
+    {
+        matchService.addMatche(matche);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<?> updeateMatche(@RequestBody Matche matche)
     {
         matchService.addMatche(matche);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -68,6 +92,19 @@ public class MatcheController {
     public ResponseEntity<?> supprimeMatchesPasse()  {
         matcheRepository.suppmatchpasse();
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/findStadeAndArbitre/{nomstade}/{nomarbitre}")
+    public ResponseEntity<HashMap<String,Object>> getStadeAndArbitreByNom(@PathVariable("nomstade") String nomstade,@PathVariable("nomarbitre") String nomarbitre){
+        HashMap<String,Object> map = new HashMap<>();
+        Stade stade = stadeService.getStadeBynomStade(nomstade);
+        Arbitre arbitre = arbitreService.getArbitreBynom(nomarbitre);
+        if(arbitre!=null && stade!=null){
+            map.put("stade",stade);
+            map.put("arbitre",arbitre);
+            return new ResponseEntity<>(map,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 

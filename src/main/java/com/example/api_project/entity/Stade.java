@@ -1,5 +1,6 @@
 package com.example.api_project.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
@@ -20,6 +21,7 @@ public class Stade {
     @Column
     String villeStade;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "stade")
     @JsonManagedReference("stade")
     Collection<Matche> matches;

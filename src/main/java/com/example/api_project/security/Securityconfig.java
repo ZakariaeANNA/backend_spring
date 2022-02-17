@@ -41,9 +41,12 @@ public class Securityconfig extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.cors();
+        http.headers().cacheControl();
         http.csrf().disable();
         http.authorizeRequests()
-                .anyRequest().permitAll();
+                        .antMatchers("/arbitres/all","/matches/all","/equipes/all","/stades/all","/joueurs/all").hasAnyRole("ADMIN","USER","EMPLOYEE")
+                        .antMatchers("/arbitres/add","/matches/add","/equipes/add","/stades/add","/joueurs/add","/matches/update").hasAnyRole("ADMIN","EMPLOYEE")
+                        .antMatchers("/arbitres/delete","/matches/delete","/equipes/delete","/stades/delete","/joueurs/delete").hasRole("ADMIN");
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilter(new CustomAuthentificationFilter(authenticationManagerBean()));
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
